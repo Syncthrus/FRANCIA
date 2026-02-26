@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LUMIÈRE — Modern Living</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #f7f4ef;
+      --warm-white: #faf8f5;
+      --ink: #1a1714;
+      --charcoal: #2e2b28;
+      --muted: #7a756f;
+      --gold: #c9a84c;
+      --gold-light: #e8d4a0;
+      --rose: #c4785a;
+      --border: #e2ddd7;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--warm-white);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    /* ── HEADER ── */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(250, 248, 245, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2.5rem;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.75rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      color: var(--ink);
+      text-decoration: none;
+    }
+    .logo span { color: var(--gold); }
+
+    nav { display: flex; gap: 2.5rem; align-items: center; }
+    nav a {
+      font-size: 0.78rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--charcoal);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    nav a:hover { color: var(--gold); }
+
+    .header-cta {
+      background: var(--ink);
+      color: var(--warm-white) !important;
+      padding: 0.55rem 1.4rem;
+      border-radius: 2px;
+      transition: background 0.2s !important;
+    }
+    .header-cta:hover { background: var(--gold) !important; color: var(--ink) !important; }
+
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { display: block; width: 24px; height: 1.5px; background: var(--ink); transition: 0.3s; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 72px;
+    }
+
+    .hero-left {
+      background: var(--cream);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 5rem 4rem 5rem 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-left::before {
+      content: 'L';
+      position: absolute;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28rem;
+      color: rgba(201,168,76,0.06);
+      right: -4rem;
+      top: 50%;
+      transform: translateY(-50%);
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .hero-tag {
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .hero-tag::before { content: ''; display: block; width: 32px; height: 1px; background: var(--gold); }
+
+    .hero-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 5vw, 5.5rem);
+      font-weight: 300;
+      line-height: 1.05;
+      color: var(--ink);
+      margin-bottom: 1.5rem;
+    }
+    .hero-headline em { font-style: italic; color: var(--rose); }
+
+    .hero-sub {
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.8;
+      max-width: 380px;
+      margin-bottom: 3rem;
+    }
+
+    .hero-actions { display: flex; gap: 1.25rem; align-items: center; flex-wrap: wrap; }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: var(--ink);
+      color: var(--warm-white);
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 1rem 2.2rem;
+      border: none;
+      cursor: pointer;
+      transition: background 0.25s, transform 0.2s;
+    }
+    .btn-primary:hover { background: var(--gold); color: var(--ink); transform: translateY(-1px); }
+
+    .btn-ghost {
+      font-size: 0.78rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--charcoal);
+      border-bottom: 1px solid var(--charcoal);
+      padding-bottom: 2px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .btn-ghost:hover { color: var(--gold); border-color: var(--gold); }
+
+    .hero-stats {
+      position: absolute;
+      bottom: 3rem; left: 5rem;
+      display: flex;
+      gap: 3rem;
+    }
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+    .stat-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .hero-right {
+      background: var(--ink);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-img-bg {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.6;
+      position: absolute;
+      inset: 0;
+    }
+
+    .hero-img-placeholder {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #2e2b28 0%, #1a1714 40%, #3d2a1a 100%);
+    }
+
+    /* Decorative circles */
+    .hero-img-placeholder::before, .hero-img-placeholder::after {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+    }
+    .hero-img-placeholder::before {
+      width: 320px; height: 320px;
+      border: 1px solid rgba(201,168,76,0.2);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .hero-img-placeholder::after {
+      width: 480px; height: 480px;
+      border: 1px solid rgba(201,168,76,0.1);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .hero-product-card {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .hero-product-icon {
+      width: 180px;
+      height: 220px;
+      margin: 0 auto 1.5rem;
+      background: linear-gradient(145deg, rgba(201,168,76,0.15), rgba(201,168,76,0.05));
+      border: 1px solid rgba(201,168,76,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+      border-radius: 2px;
+    }
+
+    .hero-product-label {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      color: var(--gold-light);
+      letter-spacing: 0.1em;
+    }
+    .hero-product-price {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.5);
+      margin-top: 0.3rem;
+    }
+
+    .hero-badge {
+      position: absolute;
+      top: 2.5rem;
+      right: 2.5rem;
+      width: 80px;
+      height: 80px;
+      background: var(--gold);
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink);
+      text-align: center;
+      line-height: 1.3;
+      animation: spin-slow 8s linear infinite;
+    }
+    @keyframes spin-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+    /* ── MARQUEE ── */
+    .marquee-wrap {
+      background: var(--ink);
+      color: var(--gold);
+      padding: 1rem 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .marquee-inner {
+      display: inline-block;
+      animation: marquee 20s linear infinite;
+    }
+    .marquee-inner span {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin: 0 2rem;
+    }
+    .marquee-inner span::after { content: ' ✦ '; }
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* ── PROMO BANNER ── */
+    .promo-section {
+      background: linear-gradient(135deg, var(--rose) 0%, #a05c42 100%);
+      padding: 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .promo-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 20px,
+        rgba(255,255,255,0.04) 20px,
+        rgba(255,255,255,0.04) 40px
+      );
+    }
+    .promo-text {
+      position: relative;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.3rem, 3vw, 2rem);
+      color: white;
+      font-style: italic;
+      margin-bottom: 0.5rem;
+    }
+    .promo-sub { position: relative; font-size: 0.82rem; color: rgba(255,255,255,0.75); letter-spacing: 0.15em; text-transform: uppercase; }
+
+    /* ── PRODUCTS ── */
+    .section { padding: 6rem 4rem; }
+    .section-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 3.5rem;
+    }
+    .section-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.75rem;
+      display: flex; align-items: center; gap: 0.75rem;
+    }
+    .section-label::before { content: ''; display: block; width: 24px; height: 1px; background: var(--gold); }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3.5vw, 3.5rem);
+      font-weight: 300;
+      line-height: 1.1;
+    }
+    .section-title em { font-style: italic; color: var(--rose); }
+    .view-all {
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 2px;
+      white-space: nowrap;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .view-all:hover { color: var(--gold); border-color: var(--gold); }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+    }
+
+    .product-card {
+      background: var(--cream);
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .product-card:hover { transform: translateY(-4px); }
+    .product-card:hover .product-overlay { opacity: 1; }
+    .product-card:hover .product-img-area { transform: scale(1.04); }
+
+    .product-img-area {
+      height: 280px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+      transition: transform 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Product color themes */
+    .p1 .product-img-area { background: linear-gradient(145deg, #e8e0d5, #d4c9b8); }
+    .p2 .product-img-area { background: linear-gradient(145deg, #d5dde8, #b8c9d4); }
+    .p3 .product-img-area { background: linear-gradient(145deg, #e8d5d5, #d4b8b8); }
+    .p4 .product-img-area { background: linear-gradient(145deg, #d5e8d5, #b8d4b8); }
+    .p5 .product-img-area { background: linear-gradient(145deg, #e8e4d5, #d4ccb8); }
+    .p6 .product-img-area { background: linear-gradient(145deg, #ddd5e8, #c9b8d4); }
+    .p7 .product-img-area { background: linear-gradient(145deg, #e8ddd5, #d4c4b8); }
+    .p8 .product-img-area { background: linear-gradient(145deg, #d5e8e8, #b8d4d4); }
+
+    .product-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(26,23,20,0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .quick-view {
+      background: var(--warm-white);
+      color: var(--ink);
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .quick-view:hover { background: var(--gold); }
+
+    .product-tag {
+      position: absolute;
+      top: 1rem; left: 1rem;
+      background: var(--rose);
+      color: white;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.7rem;
+    }
+    .product-tag.new { background: var(--gold); color: var(--ink); }
+
+    .product-info { padding: 1.25rem 1.5rem 1.5rem; }
+    .product-category {
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.3rem;
+    }
+    .product-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 400;
+      margin-bottom: 0.75rem;
+      color: var(--ink);
+    }
+    .product-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .product-price {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+    .product-price .old {
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: var(--muted);
+      text-decoration: line-through;
+      margin-left: 0.4rem;
+    }
+    .add-cart {
+      width: 38px; height: 38px;
+      background: var(--ink);
+      color: var(--warm-white);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      transition: background 0.2s;
+      flex-shrink: 0;
+    }
+    .add-cart:hover { background: var(--gold); color: var(--ink); }
+
+    .product-stars { font-size: 0.7rem; color: var(--gold); margin-bottom: 0.75rem; }
+
+    /* ── EDITORIAL SPLIT ── */
+    .editorial {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 60vh;
+    }
+    .editorial-img {
+      background: linear-gradient(135deg, #1a1714, #3d2a1a);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 8rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .editorial-img::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(201,168,76,0.1), transparent);
+    }
+    .editorial-content {
+      background: var(--cream);
+      padding: 5rem 4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .editorial-content .section-label { margin-bottom: 1rem; }
+    .editorial-content .section-title { margin-bottom: 1.5rem; }
+    .editorial-content p {
+      color: var(--muted);
+      line-height: 1.9;
+      font-size: 0.95rem;
+      margin-bottom: 2rem;
+      max-width: 420px;
+    }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials-section {
+      background: var(--ink);
+      padding: 6rem 4rem;
+      color: var(--warm-white);
+    }
+    .testimonials-section .section-title { color: var(--warm-white); }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 3.5rem;
+    }
+    .testimonial-card {
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 2rem;
+      position: relative;
+      transition: border-color 0.3s;
+    }
+    .testimonial-card:hover { border-color: rgba(201,168,76,0.4); }
+    .testimonial-card::before {
+      content: '"';
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 5rem;
+      color: var(--gold);
+      opacity: 0.3;
+      position: absolute;
+      top: 0.5rem;
+      right: 1.5rem;
+      line-height: 1;
+    }
+    .testimonial-stars { color: var(--gold); font-size: 0.8rem; margin-bottom: 1rem; }
+    .testimonial-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-style: italic;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 1.5rem;
+    }
+    .testimonial-author { font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); }
+    .testimonial-location { font-size: 0.72rem; color: rgba(255,255,255,0.4); margin-top: 0.2rem; }
+
+    /* ── NEWSLETTER ── */
+    .newsletter {
+      background: var(--gold);
+      padding: 4rem;
+      text-align: center;
+    }
+    .newsletter h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 300;
+      color: var(--ink);
+      margin-bottom: 0.75rem;
+    }
+    .newsletter p { color: rgba(26,23,20,0.65); font-size: 0.9rem; margin-bottom: 2rem; }
+    .newsletter-form {
+      display: flex;
+      max-width: 460px;
+      margin: 0 auto;
+      gap: 0;
+    }
+    .newsletter-form input {
+      flex: 1;
+      background: var(--warm-white);
+      border: none;
+      padding: 1rem 1.5rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      color: var(--ink);
+      outline: none;
+    }
+    .newsletter-form button {
+      background: var(--ink);
+      color: var(--warm-white);
+      border: none;
+      padding: 1rem 2rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.2s;
+    }
+    .newsletter-form button:hover { background: var(--rose); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--charcoal);
+      color: rgba(255,255,255,0.6);
+      padding: 4rem;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+    .footer-brand .logo { color: var(--warm-white); }
+    .footer-brand p {
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      line-height: 1.8;
+      max-width: 240px;
+    }
+    .footer-contact { margin-top: 1.5rem; font-size: 0.82rem; }
+    .footer-contact p { margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
+    .footer-contact span { color: var(--gold); }
+
+    .footer-social { display: flex; gap: 0.75rem; margin-top: 1.5rem; }
+    .social-icon {
+      width: 36px; height: 36px;
+      border: 1px solid rgba(255,255,255,0.15);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.9rem;
+      text-decoration: none;
+      color: rgba(255,255,255,0.6);
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .social-icon:hover { border-color: var(--gold); color: var(--gold); }
+
+    .footer-col h4 {
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--warm-white);
+      margin-bottom: 1.25rem;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 0.7rem; }
+    .footer-col ul a {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-col ul a:hover { color: var(--gold); }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-bottom p { font-size: 0.78rem; }
+    .footer-bottom-links { display: flex; gap: 2rem; }
+    .footer-bottom-links a {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.4);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-bottom-links a:hover { color: var(--gold); }
+
+
+
+    /* ── MEDIA QUERIES ── */
+    @media (max-width: 1200px) {
+      .products-grid { grid-template-columns: repeat(3, 1fr); }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 900px) {
+      header { padding: 0 1.5rem; }
+      nav { display: none; }
+      nav.open {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        inset: 72px 0 0;
+        background: var(--warm-white);
+        padding: 2rem 1.5rem;
+        gap: 1.5rem;
+        align-items: flex-start;
+        z-index: 99;
+        border-top: 1px solid var(--border);
+      }
+      nav.open .header-cta { margin-top: 1rem; }
+      .hamburger { display: flex; }
+
+      .hero { grid-template-columns: 1fr; }
+      .hero-right { min-height: 50vh; order: -1; }
+      .hero-left { padding: 4rem 2rem 6rem; }
+      .hero-left::before { font-size: 18rem; }
+      .hero-stats { left: 2rem; bottom: 2rem; gap: 2rem; }
+
+      .section { padding: 4rem 2rem; }
+      .editorial { grid-template-columns: 1fr; }
+      .editorial-img { min-height: 40vh; }
+      .editorial-content { padding: 3rem 2rem; }
+
+      .products-grid { grid-template-columns: repeat(2, 1fr); }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .newsletter { padding: 3rem 2rem; }
+      footer { padding: 3rem 2rem; }
+      .github-section { padding: 4rem 2rem; }
+    }
+
+    @media (max-width: 600px) {
+      .products-grid { grid-template-columns: 1fr; }
+      .section-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .newsletter-form { flex-direction: column; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
+      .footer-bottom-links { flex-wrap: wrap; gap: 1rem; }
+      .hero-stats { flex-wrap: wrap; gap: 1.5rem; }
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero-tag    { animation: fadeUp 0.6s ease 0.1s both; }
+    .hero-headline { animation: fadeUp 0.7s ease 0.25s both; }
+    .hero-sub    { animation: fadeUp 0.7s ease 0.4s both; }
+    .hero-actions { animation: fadeUp 0.7s ease 0.55s both; }
+  </style>
+</head>
+<body>
+
+<!-- ── HEADER ── -->
+<header>
+  <a href="#" class="logo">LUM<span>I</span>ÈRE</a>
+  <nav id="main-nav">
+    <a href="#">Home</a>
+    <a href="#products">Products</a>
+    <a href="#about">About</a>
+    <a href="#testimonials">Reviews</a>
+    <a href="#contact" class="header-cta">Contact</a>
+  </nav>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </div>
+</header>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-left">
+    <p class="hero-tag">New Collection 2025</p>
+    <h1 class="hero-headline">
+      Curated<br>Objects of<br><em>Desire</em>
+    </h1>
+    <p class="hero-sub">
+      Thoughtfully sourced homewares, fragrances, and lifestyle pieces for those who believe everyday living should feel extraordinary.
+    </p>
+    <div class="hero-actions">
+      <a href="#products" class="btn-primary">Shop Now →</a>
+      <a href="#about" class="btn-ghost">Explore the Story</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">2K+</div>
+        <div class="stat-label">Products</div>
+      </div>
+      <div>
+        <div class="stat-num">18K</div>
+        <div class="stat-label">Customers</div>
+      </div>
+      <div>
+        <div class="stat-num">4.9★</div>
+        <div class="stat-label">Avg Rating</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-img-placeholder"></div>
+    <div class="hero-product-card">
+      <div class="hero-product-icon">🕯️</div>
+      <div class="hero-product-label">Signature Candle</div>
+      <div class="hero-product-price">from $48.00</div>
+    </div>
+    <div class="hero-badge">New<br>Season</div>
+  </div>
+</section>
+
+<!-- ── MARQUEE ── -->
+<div class="marquee-wrap" aria-hidden="true">
+  <div class="marquee-inner">
+    <span>Free Shipping Over $80</span><span>New Arrivals Every Week</span>
+    <span>Sustainably Sourced</span><span>Handcrafted with Care</span>
+    <span>30-Day Returns</span><span>Worldwide Delivery</span>
+    <span>Free Shipping Over $80</span><span>New Arrivals Every Week</span>
+    <span>Sustainably Sourced</span><span>Handcrafted with Care</span>
+    <span>30-Day Returns</span><span>Worldwide Delivery</span>
+  </div>
+</div>
+
+<!-- ── PROMO ── -->
+<div class="promo-section">
+  <p class="promo-text">Summer Sale — Up to 40% off selected items</p>
+  <p class="promo-sub">Use code LUMIERE40 at checkout · Ends March 15</p>
+</div>
+
+<!-- ── PRODUCTS ── -->
+<section class="section" id="products">
+  <div class="section-header">
+    <div>
+      <p class="section-label">Hand-Picked</p>
+      <h2 class="section-title">Featured <em>Products</em></h2>
+    </div>
+    <a href="#" class="view-all">View all →</a>
+  </div>
+  <div class="products-grid">
+
+    <!-- 1 -->
+    <div class="product-card p1">
+      <div class="product-img-area">🕯️</div>
+      <div class="product-overlay"><button class="quick-view">Quick View</button></div>
+      <div class="product-tag new">New</div>
+      <div class="product-info">
+        <div class="product-category">Home Fragrance</div>
+        <div class="product-name">Amber & Vetiver Candle</div>
+        <div class="product-stars">★★★★★ (124)</div>
+        <div class="product-footer">
+          <div class="product-price">$48.00</div>
+          <button class="add-cart" title="Add to Cart">+</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2 -->
+    <div class="product-card p2">
+      <div class="product-img-area">🫙</div>
+      <div class="product-overlay"><button class="quick-view">Quick View</button></div>
+      <div class="product-info">
+        <div class="product-category">Ceramics</div>
+        <div class="product-name">Matte Ceramic Vase</div>
+        <div class="product-stars">★★★★★ (89)</div>
+        <div class="product-footer">
+          <div class="product-price">$72.00</div>
+          <button class="add-cart" title="Add to Cart">+</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="product-card p3">
+      <div class="product-img-area">🛁</div>
+      <div class="product-overlay"><button class="quick-view">Quick View</button></div>
+      <div class="product-tag">Sale</div>
+      <div class="product-info">
+        <div class="product-category">Bath & Body</div>
+        <div class="product-name">Rose Salt Soak</div>
+        <div class="product-stars">★★★★☆ (57)</div>
+        <div class="product-footer">
+          <div class="product-price">$34.00 <span class="old">$52.00</span></div>
+          <button class="add-cart" title="Add to Cart">+</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4 -->
+    <div class="product-card p4">
+      <div class="product-img-area">🌿</div>
+      <div class="product-overlay"><button class="quick-view">Quick View</button></div>
+      <div class="product-tag new">New</div>
+      <div class="product-info">
+        <div class="product-category">Plants & Botanicals</div>
+        <div class="product-name">Eucalyptus Bundle</div>
+        <div class="product-stars">★★★★★ (210)</div>
+        <div class="product-footer">
+          <div class="product-price">$24.00</div>
+          <button class="add-cart" title="Add to Cart">+</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5 -->
+    <div class="product-card p5">
+      <div class="product-img-area">🍵</div>
+      <div class="product-overlay"><button class="quick-view">Quick View</button></div>
+      <div class="product-info">
+        <div class="product-category">Tableware</div>
+        <div class="product-name">Linen Tea Set (4pc)</div>
+        <div class="product-stars">★★★★★ (67)</div>
+        <div class="product-footer">
+          <div class="product-price">$118.00</div>
+          <button class="add-cart" title="Add to Cart">+</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6 -->
+    <div class="product-card p6">
+      <div class="product-img-area">🪨</div>
+      <div class="product-overlay"><button class="quick-view">Quick View</button></div>
+      <div class="product-tag">Sale</div>
+      <div class="product-info">
+        <div class="product-category">Wellness</div>
+        <div class="product-name">Obsidian Face Roller</div>
+        <div class="product-stars">★★★★☆ (43)</div>
+        <div class="product-footer">
+          <div class="product-price">$55.00 <span class="old">$78.00</span></div>
+          <button class="add-cart" title="Add to Cart">+</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7 -->
+    <div class="product-card p7">
+      <div class="product-img-area">🛋️</div>
+      <div class="product-overlay"><button class="quick-view">Quick View</button></div>
+      <div class="product-tag new">New</div>
+      <div class="product-info">
+        <div class="product-category">Soft Furnishings</div>
+        <div class="product-name">Boucle Throw Blanket</div>
+        <div class="product-stars">★★★★★ (96)</div>
+        <div class="product-footer">
+          <div class="product-price">$145.00</div>
+          <button class="add-cart" title="Add to Cart">+</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8 -->
+    <div class="product-card p8">
+      <div class="product-img-area">🕰️</div>
+      <div class="product-overlay"><button class="quick-view">Quick View</button></div>
+      <div class="product-info">
+        <div class="product-category">Décor</div>
+        <div class="product-name">Brass Arch Clock</div>
+        <div class="product-stars">★★★★★ (31)</div>
+        <div class="product-footer">
+          <div class="product-price">$198.00</div>
+          <button class="add-cart" title="Add to Cart">+</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── EDITORIAL ── -->
+<section class="editorial" id="about">
+  <div class="editorial-img">🌸</div>
+  <div class="editorial-content">
+    <p class="section-label">Our Philosophy</p>
+    <h2 class="section-title">Living with <em>Intention</em></h2>
+    <p>
+      We believe the objects you surround yourself with are a reflection of how you want to live. Each piece in our collection is chosen for its craftsmanship, its story, and its ability to bring quiet beauty into the everyday.
+    </p>
+    <p>
+      From independent ceramic studios in Portugal to family-run fragrance houses in Grasse, every product in our store has a provenance worth knowing.
+    </p>
+    <a href="#" class="btn-primary">Discover Our Story →</a>
+  </div>
+</section>
+
+<!-- ── TESTIMONIALS ── -->
+<section class="testimonials-section" id="testimonials">
+  <div>
+    <p class="section-label" style="color:var(--gold);">What They Say</p>
+    <h2 class="section-title">Loved by <em style="color:var(--rose)">18,000+</em> Customers</h2>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">"Lumière has completely transformed my home. The ceramic vase I ordered is genuinely gallery-worthy — people ask about it every time they visit."</p>
+      <div class="testimonial-author">Isabelle Chen</div>
+      <div class="testimonial-location">San Francisco, CA</div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">"The packaging alone made me gasp. Beautifully wrapped, arrived quickly, and the amber candle smells exactly like a Parisian apartment."</p>
+      <div class="testimonial-author">Marcus Okafor</div>
+      <div class="testimonial-location">London, UK</div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">"I've been buying from Lumière for two years and the quality has never wavered. Truly a cut above anything else I've found online."</p>
+      <div class="testimonial-author">Sofía Varela</div>
+      <div class="testimonial-location">Madrid, Spain</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── NEWSLETTER ── -->
+<section class="newsletter">
+  <h2>Join the Inner Circle</h2>
+  <p>Early access to new arrivals, exclusive discounts, and curated inspiration, delivered fortnightly.</p>
+  <form class="newsletter-form" onsubmit="return false;">
+    <input type="email" placeholder="Your email address" aria-label="Email address"/>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer id="contact">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="#" class="logo">LUM<span style="color:var(--gold)">I</span>ÈRE</a>
+      <p>Objects for intentional living. Sourced globally, curated with care. Our curation celebrates artisans and makers who put soul into every piece.</p>
+      <div class="footer-contact">
+        <p><span>✉</span> hello@lumiere-store.com</p>
+        <p><span>☎</span> +1 (415) 882-0940</p>
+        <p><span>◉</span> 24 Rue du Commerce, San Francisco CA 94107</p>
+      </div>
+      <div class="footer-social">
+        <a href="#" class="social-icon" aria-label="Instagram">𝕀</a>
+        <a href="#" class="social-icon" aria-label="Pinterest">𝕻</a>
+        <a href="#" class="social-icon" aria-label="Twitter/X">𝕏</a>
+        <a href="#" class="social-icon" aria-label="Facebook">𝔽</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Shop</h4>
+      <ul>
+        <li><a href="#">New Arrivals</a></li>
+        <li><a href="#">Home Fragrance</a></li>
+        <li><a href="#">Ceramics</a></li>
+        <li><a href="#">Bath & Body</a></li>
+        <li><a href="#">Soft Furnishings</a></li>
+        <li><a href="#">Sale</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Help</h4>
+      <ul>
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#">Shipping & Returns</a></li>
+        <li><a href="#">Track Your Order</a></li>
+        <li><a href="#">Size Guide</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">Gift Cards</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#">Our Story</a></li>
+        <li><a href="#">Sustainability</a></li>
+        <li><a href="#">Press</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Wholesale</a></li>
+        <li><a href="#">Affiliates</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Lumière — Modern Living. All rights reserved.</p>
+    <div class="footer-bottom-links">
+      <a href="#">Terms & Conditions</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Cookie Settings</a>
+      <a href="#">Accessibility</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function toggleMenu() {
+    const nav = document.getElementById('main-nav');
+    nav.classList.toggle('open');
+  }
+
+  // Close menu when a link is clicked
+  document.querySelectorAll('#main-nav a').forEach(a => {
+    a.addEventListener('click', () => {
+      document.getElementById('main-nav').classList.remove('open');
+    });
+  });
+
+  // Add to cart feedback
+  document.querySelectorAll('.add-cart').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const orig = this.textContent;
+      this.textContent = '✓';
+      this.style.background = 'var(--gold)';
+      this.style.color = 'var(--ink)';
+      setTimeout(() => {
+        this.textContent = orig;
+        this.style.background = '';
+        this.style.color = '';
+      }, 1200);
+    });
+  });
+</script>
+
+</body>
+</html>
